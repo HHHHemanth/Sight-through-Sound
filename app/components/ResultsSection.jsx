@@ -55,7 +55,7 @@ const ResultsSection = () => {
               alt="Decorative Small"
               width={200}
               height={200}
-              className="absolute bottom-0 -right-10 block sm:hidden pointer-events-none"
+              className="absolute bottom-0 right-0 block sm:hidden pointer-events-none"
             />
       
             {/* For medium screens */}
@@ -64,7 +64,7 @@ const ResultsSection = () => {
               alt="Decorative Medium"
               width={250}
               height={250}
-              className="absolute bottom-0 -right-10  hidden sm:block md:hidden pointer-events-none"
+              className="absolute bottom-0 right-0  hidden sm:block md:hidden pointer-events-none"
             />
       
             {/* For large screens and above */}
@@ -73,7 +73,7 @@ const ResultsSection = () => {
               alt="Decorative Large"
               width={300}
               height={300}
-              className="absolute bottom-0 -right-50 md:right-0 hidden md:block pointer-events-none"
+              className="absolute bottom-0 right-0 md:right-0 hidden md:block pointer-events-none"
             />
 
 
