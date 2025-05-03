@@ -1,15 +1,41 @@
-// ResultsSection.jsx
+"use client";
 import Image from 'next/image';
-import { MagicCard } from "@/components/magicui/magic-card";
+import { useEffect, useState, useRef } from "react";
+import TypingEffect from "@/components/magicui/TypingEffect";
+import { Play, Pause } from "lucide-react"; // optional: stylish icons
+
 const ResultsSection = () => {
   const capturedImagePath = "/images/cap.jpg";
   const processedImagePath = "/images/res.jpg";
 
+  const [kannadaText, setKannadaText] = useState("");
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef(null);
+
+  useEffect(() => {
+    const fetchText = async () => {
+      const res = await fetch("/kanres.txt");
+      const text = await res.text();
+      setKannadaText(text);
+    };
+    fetchText();
+  }, []);
+
+  const toggleAudio = () => {
+    if (!audioRef.current) return;
+    if (isPlaying) {
+      audioRef.current.pause();
+    } else {
+      audioRef.current.play();
+    }
+    setIsPlaying(!isPlaying);
+  };
+
   return (
     <section className="bg-white">
       <h1 className="text-3xl font-bold text-center my-6">Image Processing Results</h1>
+
       <div className='flex flex-col lg:flex-row justify-between lg:space-x-4 space-y-4 lg:space-y-0 p-6'>
-        
         {/* Captured Image */}
         <div className="flex-1 flex justify-center items-center bg-gray-200 p-4 rounded-lg shadow-lg">
           <div className="w-full h-auto max-w-xs">
@@ -36,6 +62,30 @@ const ResultsSection = () => {
               className="object-cover rounded-md"
             />
           </div>
+        </div>
+      </div>
+
+      {/* Kannada Output Section */}
+      <div className="mt-20 p-10 rounded-lg mx-4 min-h-[400px]">
+        <h2 className="text-2xl font-bold text-center mb-1">ಚಿತ್ರದ ವಿವರಣೆ</h2>
+        <h4 className="text-xl font-bold text-center mb-4">(Scene Description)</h4>
+        <TypingEffect text={kannadaText} speed={30} />
+      </div>
+
+      {/* Audio Player Section */}
+      <div className="flex flex-col items-center mt-6 mb-12">
+      <h1 className="text-3xl font-bold text-center my-6">Audio Feedback</h1>
+        <div className="flex items-center space-x-4  p-4 rounded-lg ">
+          <button
+            onClick={toggleAudio}
+            className="p-3 bg-[#F6D46B] text-white rounded-full hover:bg-black transition"
+          >
+            {isPlaying ? <Pause size={24} /> : <Play size={24} />}
+          </button>
+          <audio ref={audioRef} src="/audio/audres.mp3" />
+          <span className="text-sm font-medium text-gray-700">
+            {isPlaying ? "Playing..." : "Paused"}
+          </span>
         </div>
       </div>
     </section>
