@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 
 export const metadata = {
   title: "Sight Through Sound",
-  description: "Created bby G69",
+  description: "Created by NGH",
 };
 
 export default function RootLayout({ children }) {

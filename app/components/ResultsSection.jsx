@@ -1,8 +1,10 @@
 "use client";
-import Image from 'next/image';
+import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState, useRef } from "react";
 import TypingEffect from "@/components/magicui/TypingEffect";
-import { Play, Pause } from "lucide-react"; // optional: stylish icons
+import { Play, Pause } from "lucide-react";
+import { InteractiveHoverButton } from "@/components/magicui/interative-hover-button2";
 
 const ResultsSection = () => {
   const capturedImagePath = "/images/cap.jpg";
@@ -19,6 +21,14 @@ const ResultsSection = () => {
       setKannadaText(text);
     };
     fetchText();
+
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get("scroll") === "results") {
+      const section = document.getElementById("results");
+      if (section) {
+        section.scrollIntoView({ behavior: "smooth" });
+      }
+    }
   }, []);
 
   const toggleAudio = () => {
@@ -31,11 +41,18 @@ const ResultsSection = () => {
     setIsPlaying(!isPlaying);
   };
 
+  const handleReload = () => {
+    window.location.href = `${window.location.pathname}?scroll=results`;
+  };
+
   return (
-    <section className="bg-white">
+    <section className="bg-white" id="results">
       <h1 className="text-3xl font-bold text-center my-6">Image Processing Results</h1>
 
-      <div className='flex flex-col lg:flex-row justify-between lg:space-x-4 space-y-4 lg:space-y-0 p-6'>
+      {/* Reload Button */}
+      
+
+      <div className="flex flex-col lg:flex-row justify-between lg:space-x-4 space-y-4 lg:space-y-0 p-6">
         {/* Captured Image */}
         <div className="flex-1 flex justify-center items-center bg-gray-200 p-4 rounded-lg shadow-lg">
           <div className="w-full h-auto max-w-xs">
@@ -74,8 +91,8 @@ const ResultsSection = () => {
 
       {/* Audio Player Section */}
       <div className="flex flex-col items-center mt-6 mb-12">
-      <h1 className="text-3xl font-bold text-center my-6">Audio Feedback</h1>
-        <div className="flex items-center space-x-4  p-4 rounded-lg ">
+        <h1 className="text-3xl font-bold text-center my-6">Audio Feedback</h1>
+        <div className="flex items-center space-x-4 p-4 rounded-lg">
           <button
             onClick={toggleAudio}
             className="p-3 bg-[#F6D46B] text-white rounded-full hover:bg-black transition"
@@ -87,7 +104,14 @@ const ResultsSection = () => {
             {isPlaying ? "Playing..." : "Paused"}
           </span>
         </div>
+        <div className="flex justify-center mb-2 mt-6">
+  <InteractiveHoverButton onClick={handleReload}>
+    Reload Section
+  </InteractiveHoverButton>
+</div>
+
       </div>
+
     </section>
   );
 };
