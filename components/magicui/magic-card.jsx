@@ -8,10 +8,10 @@ export function MagicCard({
   children,
   className,
   gradientSize = 600,
-  gradientColor = "#262626",
+  gradientColor = "#fffefe",
   gradientOpacity = 1,
-  gradientFrom = "#9E7AFF",
-  gradientTo = "#FE8BBB"
+  gradientFrom = "#F6D46B",
+  gradientTo = "#ffedb6"
 }) {
   const cardRef = useRef(null);
   const mouseX = useMotionValue(-gradientSize);
@@ -61,7 +61,7 @@ export function MagicCard({
   return (
     (<div
       ref={cardRef}
-      className={cn("group relative rounded-[inherit]", className)}>
+      className={cn("group relative  rounded-lg shadow-lg", className)}>
       <motion.div
         className="pointer-events-none absolute inset-0 rounded-[inherit] bg-border duration-300 group-hover:opacity-100"
         style={{

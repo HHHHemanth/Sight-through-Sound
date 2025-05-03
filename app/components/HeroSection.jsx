@@ -25,7 +25,7 @@ const HeroSection = () => {
           An IoT and Machine Learning Project for Blind People
         </p>
 
-        <Link href="#">
+        <Link href="#about">
           <InteractiveHoverButton>About Us</InteractiveHoverButton>
         </Link>
       </div>
