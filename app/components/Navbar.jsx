@@ -12,7 +12,8 @@ const navLinks=[
 const Navbar = () => {
     const [navbarOpen, setNavbarOpen] = useState(false);
   return (
-    <nav className="fixed top-0 left-0 right-0 bg-[#F6D46B] border-b border-black shadow-md z-200">
+    <nav className="fixed top-0 left-0 right-0 bg-white/1 backdrop-blur-md border-b border-black shadow-md z-[200]">
+
 
         <div>
             <div className='flex flex-wrap items-center justify-between mx-auto p-4 py-2'>
