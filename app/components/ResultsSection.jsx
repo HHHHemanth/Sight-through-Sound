@@ -47,7 +47,36 @@ const ResultsSection = () => {
   };
 
   return (
-    <section className="bg-white" id="results">
+    <section className="relative bg-white" id="results">
+
+
+      <Image
+              src="/images/s3b.png"
+              alt="Decorative Small"
+              width={200}
+              height={200}
+              className="absolute bottom-0 -right-10 block sm:hidden pointer-events-none"
+            />
+      
+            {/* For medium screens */}
+            <Image
+              src="/images/s3b.png"
+              alt="Decorative Medium"
+              width={250}
+              height={250}
+              className="absolute bottom-0 -right-10  hidden sm:block md:hidden pointer-events-none"
+            />
+      
+            {/* For large screens and above */}
+            <Image
+              src="/images/s3b.png"
+              alt="Decorative Large"
+              width={300}
+              height={300}
+              className="absolute bottom-0 -right-50 md:right-0 hidden md:block pointer-events-none"
+            />
+
+
       <h1 className="text-3xl font-bold text-center my-6">Image Processing Results</h1>
 
       {/* Reload Button */}
