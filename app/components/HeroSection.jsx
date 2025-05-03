@@ -4,9 +4,9 @@ import { InteractiveHoverButton } from "@/components/magicui/interactive-hover-b
 
 const HeroSection = () => {
   return (
-    <section className="flex items-center justify-between mt-10 py-16 px-8 bg-[#F6D46B]">
+    <section className="flex flex-col sm:flex-row items-center justify-between mt-10 py-16 px-8 bg-[#F6D46B]">
       {/* Image Section */}
-      <div className="flex-1">
+      <div className="flex-1 mb-8 sm:mb-0">
         <Image
           src="/images/herosts.png" // Replace with your image path
           alt="Project Image"
@@ -17,22 +17,17 @@ const HeroSection = () => {
       </div>
 
       {/* Text Section */}
-      <div className="flex-1 ml-8">
+      <div className="flex-1 ml-0 sm:ml-8 text-center sm:text-left">
         <h1 className="text-4xl font-bold text-black mb-4">
-        Sight Through Sound
+          Sight Through Sound
         </h1>
         <p className="text-xl font-medium text-black font-sans mb-6">
-        An Iot and Machine Learning Project for Blind People
+          An IoT and Machine Learning Project for Blind People
         </p>
 
-
-        <Link
-          href="#">
+        <Link href="#">
           <InteractiveHoverButton>About Us</InteractiveHoverButton>
         </Link>
-        
-
-        
       </div>
     </section>
   );
