@@ -17,7 +17,9 @@ const ResultsSection = () => {
 
   const audioRef = useRef(null);
 
-  const LAPTOP_A_BASE_URL = "http://192.168.113.145:5000";
+  const LAPTOP_A_BASE_URL = "https://stsbackend-1.onrender.com";
+
+
 
   useEffect(() => {
     const fetchResults = async () => {
@@ -29,7 +31,7 @@ const ResultsSection = () => {
         console.log(data);
 
         setImageUrl(data.processed_image || "");
-        setAudioUrl(data.audio || "");  // Make sure to update the audio URL here
+        setAudioUrl(data.audio || "");
         setKannadaText(data.kannada_text || "");
         setCapturedImagePath(data.captured_image || ""); 
         setError("");
