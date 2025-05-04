@@ -19,8 +19,6 @@ const ResultsSection = () => {
 
   const LAPTOP_A_BASE_URL = "https://stsbackend-1.onrender.com";
 
-
-
   useEffect(() => {
     const fetchResults = async () => {
       try {
@@ -30,10 +28,10 @@ const ResultsSection = () => {
         
         console.log(data);
 
-        setImageUrl(data.processed_image || "");
-        setAudioUrl(data.audio || "");
+        setImageUrl(`${LAPTOP_A_BASE_URL}${data.processed_image}` || "");
+        setAudioUrl(`${LAPTOP_A_BASE_URL}${data.audio}` || "");
         setKannadaText(data.kannada_text || "");
-        setCapturedImagePath(data.captured_image || ""); 
+        setCapturedImagePath(`${LAPTOP_A_BASE_URL}${data.captured_image}` || ""); 
         setError("");
       } catch (err) {
         console.error("Error fetching data:", err);
@@ -86,7 +84,7 @@ const ResultsSection = () => {
                   <h3 className="text-center font-semibold text-lg mb-4">Captured Image</h3>
                   {capturedImagePath ? (
                     <Image
-                      src={`${capturedImagePath}?t=${new Date().getTime()}`} // Append timestamp to avoid caching issues
+                      src={`${capturedImagePath}?t=${new Date().getTime()}`} // Appending timestamp to avoid caching
                       alt="Captured"
                       width={300}
                       height={300}
@@ -108,7 +106,7 @@ const ResultsSection = () => {
                   <h3 className="text-center font-semibold text-lg mb-4">Processed Image</h3>
                   {imageUrl ? (
                     <Image
-                      src={`${imageUrl}?t=${new Date().getTime()}`} // Fix to show processed image
+                      src={`${imageUrl}?t=${new Date().getTime()}`} // Appending timestamp to avoid caching
                       alt="Processed"
                       width={300}
                       height={300}
