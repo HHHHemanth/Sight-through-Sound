@@ -9,6 +9,7 @@ const nextConfig = {
           pathname: '/static/**',
         },
       ],
+      domains: ['stsbackend-1.onrender.com'], // Add this line
     },
   };
   

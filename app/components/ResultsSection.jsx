@@ -1,16 +1,16 @@
-"use client"
+"use client";
 import { useEffect, useState, useRef } from "react";
 import TypingEffect from "@/components/magicui/TypingEffect";
 import { Play, Pause } from "lucide-react";
 import { InteractiveHoverButton } from "@/components/magicui/interative-hover-button2";
 import { MagicCard } from "@/components/magicui/magic-card";
-import Image from 'next/image';
+import Image from "next/image";
 
 const ResultsSection = () => {
   const [kannadaText, setKannadaText] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [audioUrl, setAudioUrl] = useState("");
-  const [capturedImagePath, setCapturedImagePath] = useState(""); 
+  const [capturedImagePath, setCapturedImagePath] = useState("");
   const [isPlaying, setIsPlaying] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -25,13 +25,29 @@ const ResultsSection = () => {
         const res = await fetch(`${LAPTOP_A_BASE_URL}/get-results`);
         if (!res.ok) throw new Error("Failed to fetch results");
         const data = await res.json();
-        
+
         console.log(data);
 
-        setImageUrl(`${LAPTOP_A_BASE_URL}${data.processed_image}` || "");
-        setAudioUrl(`${LAPTOP_A_BASE_URL}${data.audio}` || "");
+        setImageUrl(
+          data.processed_image?.startsWith("http")
+            ? data.processed_image
+            : `${LAPTOP_A_BASE_URL}${data.processed_image}`
+        );
+
+        setAudioUrl(
+          data.audio?.startsWith("http")
+            ? data.audio
+            : `${LAPTOP_A_BASE_URL}${data.audio}`
+        );
+
         setKannadaText(data.kannada_text || "");
-        setCapturedImagePath(`${LAPTOP_A_BASE_URL}${data.captured_image}` || ""); 
+
+        setCapturedImagePath(
+          data.captured_image?.startsWith("http")
+            ? data.captured_image
+            : `${LAPTOP_A_BASE_URL}${data.captured_image}`
+        );
+
         setError("");
       } catch (err) {
         console.error("Error fetching data:", err);
@@ -84,7 +100,7 @@ const ResultsSection = () => {
                   <h3 className="text-center font-semibold text-lg mb-4">Captured Image</h3>
                   {capturedImagePath ? (
                     <Image
-                      src={`${capturedImagePath}?t=${new Date().getTime()}`} // Appending timestamp to avoid caching
+                      src={`${capturedImagePath}?t=${new Date().getTime()}`}
                       alt="Captured"
                       width={300}
                       height={300}
@@ -106,7 +122,7 @@ const ResultsSection = () => {
                   <h3 className="text-center font-semibold text-lg mb-4">Processed Image</h3>
                   {imageUrl ? (
                     <Image
-                      src={`${imageUrl}?t=${new Date().getTime()}`} // Appending timestamp to avoid caching
+                      src={`${imageUrl}?t=${new Date().getTime()}`}
                       alt="Processed"
                       width={300}
                       height={300}
