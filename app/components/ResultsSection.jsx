@@ -17,7 +17,7 @@ const ResultsSection = () => {
 
   const audioRef = useRef(null);
 
-  const LAPTOP_A_BASE_URL = "https://stsbackend-1.onrender.com";
+  const LAPTOP_A_BASE_URL = "http://127.0.0.1:5000";
 
   useEffect(() => {
     const fetchResults = async () => {

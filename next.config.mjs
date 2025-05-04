@@ -4,12 +4,22 @@ const nextConfig = {
       remotePatterns: [
         {
           protocol: 'http',
+          hostname: '127.0.0.1',
+          port: '5000',
+          pathname: '/static/**',
+        },
+        {
+          protocol: 'http',
           hostname: '192.168.113.145',
           port: '5000',
           pathname: '/static/**',
         },
+        {
+          protocol: 'https',
+          hostname: 'stsbackend-1.onrender.com',
+          pathname: '/static/**',
+        },
       ],
-      domains: ['stsbackend-1.onrender.com'], // Add this line
     },
   };
   
