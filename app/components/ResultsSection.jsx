@@ -17,7 +17,7 @@ const ResultsSection = () => {
 
   const audioRef = useRef(null);
 
-  const LAPTOP_A_BASE_URL = "http://127.0.0.1:5000";
+  const LAPTOP_A_BASE_URL = "https://flat-islands-yell.loca.lt";
 
   useEffect(() => {
     const fetchResults = async () => {
